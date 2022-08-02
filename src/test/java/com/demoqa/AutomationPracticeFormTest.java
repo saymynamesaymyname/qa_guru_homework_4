@@ -7,6 +7,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.text;
 
 
 public class AutomationPracticeFormTest {
@@ -53,16 +54,16 @@ public class AutomationPracticeFormTest {
         $("#submit").click();
 
         $(".table-responsive").shouldHave(
-                Condition.text("Alex Testov"),
-                Condition.text("alex@test.com"),
-                Condition.text("Male"),
-                Condition.text("0123465678"),
-                Condition.text("20 May,1988"),
-                Condition.text("Economics"),
-                Condition.text("Sports"),
-                Condition.text("cat.jpg"),
-                Condition.text("Saint-Petersburg Nevsky, 1"),
-                Condition.text("NCR Delhi")
+                text("Alex Testov"),
+                text("alex@test.com"),
+                text("Male"),
+                text("0123465678"),
+                text("20 May,1988"),
+                text("Economics"),
+                text("Sports"),
+                text("cat.jpg"),
+                text("Saint-Petersburg Nevsky, 1"),
+                text("NCR Delhi")
         );
 
 
