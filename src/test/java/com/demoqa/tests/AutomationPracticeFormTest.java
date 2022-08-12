@@ -1,4 +1,4 @@
-package com.demoqa;
+package com.demoqa.tests;
 import org.junit.jupiter.api.BeforeAll;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Condition;
