@@ -54,7 +54,7 @@ public class AutomationPracticeFormPageObjectTest {
     }
 
     @Test
-    void TestRegistrationFormWithMinimumData() {
+    void testRegistrationFormWithMinimumData() {
         registrationFormPage
                 .openPage()
                 .setFirstName("Boris")
