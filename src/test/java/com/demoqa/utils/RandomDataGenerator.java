@@ -5,10 +5,6 @@ import java.util.Random;
 import java.util.OptionalInt;
 import java.util.Locale;
 import java.time.Month;
-
-
-
-
 public class RandomDataGenerator {
 
     public static   String generateRandomMonth() {

@@ -15,28 +15,22 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
     Faker faker = new Faker();
 
-    String firstName,
-            lastName,
-            email,
-            phoneNumber,
-            day,
-            month,
-            year,
-            fullExpectedDate,
-            address;
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            email = faker.internet().emailAddress(),
+            phoneNumber = faker.phoneNumber().subscriberNumber(10),
+            day = String.format("%02d", faker.number().numberBetween(1,28)),
+            month = generateRandomMonth(),
+            year = valueOf(faker.number().numberBetween(1980, 2000)),
+            fullExpectedDate = format("%s %s,%s", day, month, year),
+            address = faker.address().fullAddress(),
+            gender = "Male",
+            subject = "Economics",
+            hobby = "Sports",
+            pathToFile = "src/test/resources/cat.jpg",
+            state = "NCR",
+            city = "Delhi";
 
-    @BeforeEach
-    void generateTestData() {
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        email = faker.internet().emailAddress();
-        phoneNumber = faker.phoneNumber().subscriberNumber(10);
-        day = String.format("%02d", faker.number().numberBetween(1,28));
-        year = valueOf(faker.number().numberBetween(1980, 2000));
-        month = generateRandomMonth();
-        fullExpectedDate = format("%s %s,%s", day, month, year);
-        address = faker.address().fullAddress();
-    }
 
 
     @Test
@@ -46,15 +40,15 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGender("Male")
+                .setGender(gender)
                 .setUserNumber(phoneNumber)
                 .setDateOfBirth(year, month, day)
-                .setSubject("Economics")
+                .setSubject(subject)
                 .setHobby("Sports")
-                .uploadFile("src/test/resources/cat.jpg")
+                .uploadFile(pathToFile)
                 .setAddress(address)
-                .setState("NCR")
-                .setCity("Delhi")
+                .setState(state)
+                .setCity(city)
                 .clickSubmitButton()
                 .checkResultsTableVisible()
                 .checkResult("Student Name", firstName + " " + lastName)
@@ -62,24 +56,24 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", phoneNumber)
                 .checkResult("Date of Birth", fullExpectedDate)
-                .checkResult("Subjects", "Economics")
-                .checkResult("Hobbies", "Sports")
-                .checkResult("Picture", "cat.jpg")
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobby)
+                .checkResult("Picture", pathToFile.substring(pathToFile.lastIndexOf("/")+1))
                 .checkResult("Address", address)
-                .checkResult("State and City", "NCR Delhi");
+                .checkResult("State and City", state + " " + city);
     }
 
     @Test
-    void TestRegistrationFormWithMinimumData() {
+    void testRegistrationFormWithMinimumData() {
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserNumber(phoneNumber)
-                .setGender("Male")
+                .setGender(gender)
                 .clickSubmitButton()
                 .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Gender", "Male")
+                .checkResult("Gender", gender)
                 .checkResult("Mobile", phoneNumber);
 
 
