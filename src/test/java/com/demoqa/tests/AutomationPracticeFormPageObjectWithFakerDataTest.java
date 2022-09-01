@@ -13,6 +13,8 @@ import static java.lang.String.valueOf;
 
 public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+    ClassLoader classLoader = AutomationPracticeFormPageObjectWithFakerDataTest.class.getClassLoader();
+
     Faker faker = new Faker();
 
     String firstName = faker.name().firstName(),
@@ -27,7 +29,7 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
             gender = "Male",
             subject = "Economics",
             hobby = "Sports",
-            pathToFile = "src/test/resources/cat.jpg",
+            pathToFile = classLoader.getResource("cat.jpg").getPath(),
             state = "NCR",
             city = "Delhi";
 
@@ -44,7 +46,7 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
                 .setUserNumber(phoneNumber)
                 .setDateOfBirth(year, month, day)
                 .setSubject(subject)
-                .setHobby("Sports")
+                .setHobby(hobby)
                 .uploadFile(pathToFile)
                 .setAddress(address)
                 .setState(state)
