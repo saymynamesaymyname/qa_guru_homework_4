@@ -4,13 +4,14 @@ import com.demoqa.pages.RegistrationFormPage;
 import com.demoqa.utils.RandomDataGenerator;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.demoqa.utils.RandomDataGenerator.generateRandomMonth;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
-
+@DisplayName("Tests for automation practice form")
 public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
     ClassLoader classLoader = AutomationPracticeFormPageObjectWithFakerDataTest.class.getClassLoader();
@@ -36,6 +37,7 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
 
 
     @Test
+    @DisplayName("Full registration form test")
     void testFullRegistrationForm() {
         registrationFormPage
                 .openPage()
@@ -66,6 +68,7 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
     }
 
     @Test
+    @DisplayName("Registration with minimum ")
     void testRegistrationFormWithMinimumData() {
         registrationFormPage
                 .openPage()
