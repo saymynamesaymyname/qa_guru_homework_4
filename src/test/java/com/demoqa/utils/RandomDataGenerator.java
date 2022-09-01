@@ -9,7 +9,7 @@ public class RandomDataGenerator {
 
     public static   String generateRandomMonth() {
         Random random = new Random();
-        OptionalInt randomNumberMonth = random.ints(0, 12).findFirst();
+        OptionalInt randomNumberMonth = random.ints(1, 12).findFirst();
         return Month.of(randomNumberMonth.getAsInt()).getDisplayName(TextStyle.FULL, Locale.US);
 
     }
