@@ -50,3 +50,15 @@ tasks.withType(Test) {
 }
 
 test {}
+
+task fulltest(type: Test) {
+    useJUnitPlatform {
+        includeTags "fullTest"
+    }
+}
+
+task smoketest(type: Test) {
+    useJUnitPlatform {
+        includeTags "smokeTest"
+        }
+}

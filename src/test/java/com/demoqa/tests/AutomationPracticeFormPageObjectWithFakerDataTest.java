@@ -5,6 +5,7 @@ import com.demoqa.utils.RandomDataGenerator;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.demoqa.utils.RandomDataGenerator.generateRandomMonth;
@@ -37,6 +38,7 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
 
 
     @Test
+    @Tag("fullTest")
     @DisplayName("Full registration form test")
     void testFullRegistrationForm() {
         registrationFormPage
@@ -68,6 +70,7 @@ public class AutomationPracticeFormPageObjectWithFakerDataTest extends TestBase 
     }
 
     @Test
+    @Tag("smokeTest")
     @DisplayName("Registration with minimum ")
     void testRegistrationFormWithMinimumData() {
         registrationFormPage
