@@ -11,9 +11,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static java.lang.String.format;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
-public class Attach {
+ public class Attach {
     @Attachment(value = "{attachName}", type = "image/png")
     public static byte[] screenshotAs(String attachName) {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
@@ -38,14 +39,15 @@ public class Attach {
 
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String addVideo() {
+    public static String addVideo(String remoteUrl) {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
+                + getVideoUrl(remoteUrl)
                 + "' type='video/mp4'></video></body></html>";
     }
 
-    public static URL getVideoUrl() {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + getSessionId() + ".mp4";
+    public static URL getVideoUrl(String remoteUrl) {
+       String videoUrl = format("https://%s/video/%s.mp4", remoteUrl, getSessionId());
+
 
         try {
             return new URL(videoUrl);
